@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_title_label">Вход в личный кабинет</string>
+    <string name="tv_title_search_job_label">Поиск работы</string>
+    <string name="edit_text_email_label">Электронная почта</string>
+    <string name="button_continue_label">Продолжить</string>
+    <string name="tv_password_label">Войти с паролем</string>
+    <string name="tv_search_workers_label">Поиск сотрудников</string>
+    <string name="tv_description_label">Размещение вакансий и доступ к базе резюме</string>
+    <string name="button_search_workers_label">Я ищу сотрудников</string>
+    <string name="title_pin_label">Отправили код на</string>
+    <string name="tv_pin_description_label">Напишите его, чтобы подтвердить, что это\nвы, а не кто-то другой входит в личный\nкабинет</string>
+    <string name="incorrect_email">Вы ввели неверный email</string>
+</resources>
