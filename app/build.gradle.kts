@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":auth"))
+    implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -58,8 +60,10 @@ dependencies {
     implementation ("io.insert-koin:koin-android:3.4.0")
     implementation ("io.insert-koin:koin-androidx-compose:3.4.0")
 
-    //coil
-    implementation("io.coil-kt:coil-compose:2.7.0")
+    //Navigation
+    val nav_version = "2.8.0"
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
 
     //debug
     debugImplementation ("com.github.chuckerteam.chucker:library:4.0.0")

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Поиск</string>
+    <string name="favourite">Избранное</string>
+    <string name="response">Отклики</string>
+    <string name="message">Сообщения</string>
+    <string name="profile">Профиль</string>
+    <string name="tv_looking_now_label">Сейчас просматривает 1 человек</string>
+    <string name="tv_vacancy_label">UI/UX Designer</string>
+    <string name="tv_salary_label">1500-2900 Br</string>
+    <string name="tv_city_label">Минск</string>
+    <string name="tv_company_label">Мобирикс</string>
+    <string name="tv_experience_label">Опыт от 1 года до 3 лет</string>
+    <string name="tv_date_label">Опубликовано 20 февраля</string>
+    <string name="button_accept_label">Откликнуться</string>
+</resources>

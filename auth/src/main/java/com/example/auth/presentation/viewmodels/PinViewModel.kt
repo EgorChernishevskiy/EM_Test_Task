@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-private const val PIN_LENGTH = 2
+private const val PIN_LENGTH = 4
 
 class PinViewModel : ViewModel() {
 

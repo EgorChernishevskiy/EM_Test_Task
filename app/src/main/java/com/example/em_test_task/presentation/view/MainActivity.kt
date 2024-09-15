@@ -1,35 +1,62 @@
 package com.example.em_test_task.presentation.view
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.NavController
-import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.findNavController
+import androidx.fragment.app.commit
+import com.example.auth.presentation.fragments.EMAIL_KEY
+import com.example.auth.presentation.fragments.LoginFragment
+import com.example.auth.presentation.fragments.PinFragment
+import com.example.auth.presentation.navigation.AuthNavigation
 import com.example.em_test_task.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
 
-//    private var navController: NavController? = null
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        val binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        navController = findNavController(R.id.nav_host_fragment_activity_main)
-//        navController?.let {
-//            binding.navView.setupWithNavController(it)
-//        }
-//    }
-//
-//    override fun navigate(navigation: String) {
-//        navController?.navigate(
-//            NavDeepLinkRequest.Builder
-//                .fromUri(navigation.toUri())
-//                .build()
-//        )
-//    }
+class MainActivity : AppCompatActivity(), AuthNavigation {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                replace(R.id.fragmentContainer, LoginFragment())
+            }
+            findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
+        }
+
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            toggleBottomNavigationVisibility()
+        }
+    }
+
+    override fun navigateToPin(email: String) {
+        val pinFragment = PinFragment().apply {
+            arguments = Bundle().apply {
+                putString(EMAIL_KEY, email)
+            }
+        }
+
+        supportFragmentManager.commit {
+            replace(R.id.fragmentContainer, pinFragment)
+            addToBackStack(null)
+        }
+    }
+
+    override fun closeAuth() {
+        finish()
+    }
+
+    private fun toggleBottomNavigationVisibility() {
+        val navView = findViewById<BottomNavigationView>(R.id.nav_view)
+
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+
+        if (currentFragment is LoginFragment || currentFragment is PinFragment) {
+            navView.visibility = View.GONE
+        } else {
+            navView.visibility = View.VISIBLE
+        }
+    }
 }

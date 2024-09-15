@@ -7,7 +7,7 @@
     android:background="@color/black">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleRec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,7 +29,7 @@
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title">
+        app:layout_constraintTop_toBottomOf="@id/titleRec">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -72,6 +72,8 @@
                     android:layout_height="40dp"
                     android:background="@null"
                     android:backgroundTint="@null"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/regular"
                     android:hint="@string/edit_text_email_label"
                     android:paddingHorizontal="16dp"
                     android:textColorHint="@color/gray"
@@ -167,7 +169,7 @@
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/background_button_green"
                 android:fontFamily="@font/regular"
-                android:text="@string/button_search_workers_label"
+                android:text="Я ищу сотрудников"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="14sp" />

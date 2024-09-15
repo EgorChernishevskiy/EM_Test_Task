@@ -23,3 +23,4 @@ rootProject.name = "EM_Test_Task"
 include(":app")
 include(":auth")
 include(":core")
+include(":main")

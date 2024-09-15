@@ -9,9 +9,9 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import com.example.auth.R
 import com.example.auth.databinding.FragmentLoginBinding
+import com.example.auth.presentation.navigation.AuthNavigation
 import com.example.auth.presentation.viewmodels.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.example.auth.presentation.navigation.AuthNavigation
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_rec_label">Поднять резюме\nв поиске</string>
+    <string name="button_rec_label">Поднять</string>
+    <string name="input_search_hint">Должность, ключевые слова</string>
+    <string name="tv_vacancies_label">145 вакансий</string>
+    <string name="tv_vacancies_filter_label">По соответствию</string>
+    <string name="tv_for_you_label">Вакансии для вас</string>
+</resources>
