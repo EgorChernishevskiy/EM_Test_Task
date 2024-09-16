@@ -1,18 +1,20 @@
-package com.example.main.domain.models
+package com.example.main.presentation.models
 
-data class Vacancy(
+import com.example.core.presentation.adapters.IAdapterDelegate
+
+data class VacancyUI(
     val id: String,
     val lookingNumber: Int,
     val title: String,
-    val address: Address,
+    val address: AddressUI,
     val company: String,
-    val experience: Experience,
+    val experience: ExperienceUI,
     val publishedDate: String,
     val isFavorite: Boolean,
-    val salary: Salary,
+    val salary: SalaryUI,
     val schedules: List<String>,
     val appliedNumber: Int,
     val description: String?,
     val responsibilities: String,
     val questions: List<String>
-)
+) : IAdapterDelegate

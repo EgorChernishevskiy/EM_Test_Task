@@ -1,4 +1,4 @@
-package com.example.main.data.models
+package com.example.main.data.models.dto
 
 data class AddressDTO(
     val town: String,

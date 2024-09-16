@@ -40,7 +40,7 @@ class PinFragment : Fragment(R.layout.fragment_pin) {
         binding.pin.doAfterTextChanged {
             viewModel.changePin(it.toString())
         }
-        binding.title.text = "${binding.title.text} ${arguments?.getString(EMAIL_KEY)}"
+        binding.titleRec.text = "${binding.titleRec.text} ${arguments?.getString(EMAIL_KEY)}"
         binding.button.setOnClickListener {
             requireActivity().hideKeyboard()
             (requireActivity() as AuthNavigation).closeAuth()

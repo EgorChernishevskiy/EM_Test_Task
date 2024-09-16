@@ -64,4 +64,10 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+    implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2")
+
+    //debug
+    debugImplementation ("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation ("com.github.chuckerteam.chucker:library-no-op:4.0.0")
 }

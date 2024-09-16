@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":main"))
     implementation(project(":auth"))
     implementation(project(":core"))
 

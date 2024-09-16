@@ -1,12 +1,12 @@
 package com.example.main.data.mappres.vacancymapper
 
-import com.example.main.data.models.VacancyDTO
+import com.example.main.data.models.dto.VacancyDTO
 import com.example.main.domain.models.Address
 import com.example.main.domain.models.Experience
 import com.example.main.domain.models.Salary
 import com.example.main.domain.models.Vacancy
 
-class VacancyMapperImpl : VacancyMapper {
+class DataVacancyMapperImpl : IVacancyMapper {
     override fun mapVacancyDTOToVacancy(dto: VacancyDTO): Vacancy {
         return Vacancy(
             id = dto.id,

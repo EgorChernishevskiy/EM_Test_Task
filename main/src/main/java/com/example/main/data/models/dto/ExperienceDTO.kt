@@ -1,4 +1,4 @@
-package com.example.main.data.models
+package com.example.main.data.models.dto
 
 data class ExperienceDTO(
     val previewText: String,

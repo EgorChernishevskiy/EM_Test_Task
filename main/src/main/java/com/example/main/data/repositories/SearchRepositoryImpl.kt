@@ -1,30 +1,53 @@
 package com.example.main.data.repositories
 
 import com.example.main.data.api.ApiService
-import com.example.main.data.mappres.offermapper.OfferMapper
-import com.example.main.data.mappres.vacancymapper.VacancyMapper
+import com.example.main.data.mappres.offermapper.IOfferMapper
+import com.example.main.data.mappres.vacancymapper.IVacancyMapper
 import com.example.main.domain.models.Offer
+import com.example.main.domain.models.VacanciesAmount
 import com.example.main.domain.models.Vacancy
 import com.example.main.domain.repositories.ISearchRepository
 
 class SearchRepositoryImpl(
     private val apiService: ApiService,
-    private val offerMapper: OfferMapper,
-    private val vacancyMapper: VacancyMapper
+    private val offerMapper: IOfferMapper,
+    private val vacancyMapper: IVacancyMapper
 ) : ISearchRepository {
 
-    override fun getOffers(): List<Offer> {
-        val response = apiService.getOffers().execute()
-        return response.body()?.map { offerMapper.mapOfferDTOToOffer(it) } ?: emptyList()
+    override suspend fun getOffers(): List<Offer> {
+        return try {
+            val response = apiService.getOffers()
+            response.body()?.offers?.map { offerMapper.mapOfferDTOToOffer(it) } ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
     }
 
-    override fun getVacancies(): List<Vacancy> {
-        val response = apiService.getVacancies().execute()
-        return response.body()?.map { vacancyMapper.mapVacancyDTOToVacancy(it) } ?: emptyList()
+    override suspend fun getVacancies(): List<Vacancy> {
+        return try {
+            val response = apiService.getVacancies()
+            response.body()?.vacancies?.map { vacancyMapper.mapVacancyDTOToVacancy(it) } ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
     }
 
-    override fun getVacancyById(id: String): Vacancy? {
-        val response = apiService.getVacancyById(id).execute()
-        return response.body()?.let { vacancyMapper.mapVacancyDTOToVacancy(it) }
+    override suspend fun getVacancyById(id: String): Vacancy? {
+        return try {
+            val response = apiService.getVacancyById(id)
+            response.body()?.let { vacancyMapper.mapVacancyDTOToVacancy(it) }
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    override suspend fun getVacanciesAmount(): VacanciesAmount {
+        return try {
+            val response = apiService.getVacancies()
+            val vacancies = response.body()?.vacancies ?: emptyList()
+            VacanciesAmount(count = vacancies.size)
+        } catch (e: Exception) {
+            VacanciesAmount(count = 0)
+        }
     }
 }

@@ -1,32 +1,33 @@
-package com.example.search.search.adapter
+package com.example.main.presentation.adapters
 
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
-import com.example.search.databinding.ItemSearchRecomendBinding
+import com.example.core.presentation.adapters.IAdapterDelegate
+import com.example.main.databinding.ItemRecommendationBinding
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import domain.Recommendation
-import domain.RecyclerItem
+import com.example.main.presentation.models.OfferUI
 
 fun offerAdapterDelegate(
     onClick: (String) -> Unit
-) = adapterDelegateViewBinding<Recommendation, RecyclerItem, ItemSearchRecomendBinding>({ layoutInflater, root ->
-    ItemSearchRecomendBinding.inflate(layoutInflater, root, false)
-}) {
+) =
+    adapterDelegateViewBinding<OfferUI, IAdapterDelegate, ItemRecommendationBinding>({ layoutInflater, root ->
+        ItemRecommendationBinding.inflate(layoutInflater, root, false)
+    }) {
 
-    binding.root.setOnClickListener {
-        onClick(item.url)
-    }
-
-    bind {
-        if (item.img > 0) {
-            binding.img.setImageDrawable(AppCompatResources.getDrawable(context, item.img))
-        } else {
-            binding.img.isVisible = false
+        binding.root.setOnClickListener {
+            onClick(item.link)
         }
 
-        binding.title.text = item.title
+        bind {
+            if (item.img > 0) {
+                binding.imgRec.setImageDrawable(AppCompatResources.getDrawable(context, item.img))
+            } else {
+                binding.imgRec.isVisible = false
+            }
 
-        binding.button.isVisible = item.buttonText.isBlank()
-        binding.button.text = item.buttonText
+            binding.titleRec.text = item.title
+
+            binding.buttonRec.isVisible = item.buttonText != null
+            binding.buttonRec.text = item.buttonText
+        }
     }
-}

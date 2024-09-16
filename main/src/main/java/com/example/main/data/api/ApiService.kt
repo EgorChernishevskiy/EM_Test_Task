@@ -1,18 +1,19 @@
 package com.example.main.data.api
 
-import com.example.main.data.models.OfferDTO
-import com.example.main.data.models.VacancyDTO
+import com.example.main.data.models.dto.VacancyDTO
+import com.example.main.data.models.responses.SearchResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
     @GET("offers")
-    fun getOffers(): Call<List<OfferDTO>>
+    suspend fun getOffers(): Response<SearchResponse>
 
     @GET("vacancies")
-    fun getVacancies(): Call<List<VacancyDTO>>
+    suspend fun getVacancies(): Response<SearchResponse>
 
     @GET("vacancies/{id}")
-    fun getVacancyById(@Path("id") id: String): Call<VacancyDTO>
+    suspend fun getVacancyById(@Path("id") id: String): Response<VacancyDTO>
 }

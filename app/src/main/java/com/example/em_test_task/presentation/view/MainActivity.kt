@@ -9,6 +9,7 @@ import com.example.auth.presentation.fragments.LoginFragment
 import com.example.auth.presentation.fragments.PinFragment
 import com.example.auth.presentation.navigation.AuthNavigation
 import com.example.em_test_task.R
+import com.example.main.presentation.fragments.MainFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -20,9 +21,10 @@ class MainActivity : AppCompatActivity(), AuthNavigation {
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
-                replace(R.id.fragmentContainer, LoginFragment())
+                //replace(R.id.fragmentContainer, LoginFragment())
+                replace(R.id.fragmentContainer, MainFragment())
             }
-            findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
+            //findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
         }
 
 
@@ -45,7 +47,10 @@ class MainActivity : AppCompatActivity(), AuthNavigation {
     }
 
     override fun closeAuth() {
-        finish()
+        supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.commit {
+            replace(R.id.fragmentContainer, MainFragment())
+        }
     }
 
     private fun toggleBottomNavigationVisibility() {

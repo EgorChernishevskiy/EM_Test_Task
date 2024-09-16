@@ -1,4 +1,4 @@
-package com.example.main.data.models
+package com.example.main.data.models.dto
 
 data class VacancyDTO(
     val id: String,
@@ -12,7 +12,7 @@ data class VacancyDTO(
     val salary: SalaryDTO,
     val schedules: List<String>,
     val appliedNumber: Int,
-    val description: String,
+    val description: String?,
     val responsibilities: String,
     val questions: List<String>
 )

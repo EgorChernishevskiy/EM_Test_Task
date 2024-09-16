@@ -129,6 +129,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textForYou"
-        tools:listitem="@layout/item_search_work" />
+        tools:listitem="@layout/item_vacancy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
