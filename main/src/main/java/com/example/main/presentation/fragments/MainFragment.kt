@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.example.core.presentation.navigation.Navigation
 import com.example.main.databinding.FragmentMainBinding
 import com.example.main.presentation.adapters.offerAdapterDelegate
 import com.example.main.presentation.viewmodels.MainViewModel
@@ -27,7 +28,7 @@ class MainFragment : Fragment(com.example.main.R.layout.fragment_main) {
 
     private val adapterVacancies = ListDelegationAdapter(
         vacancyAdapterDelegate({
-            //(requireActivity() as Navigation).navigateToWork(it)
+            (requireActivity() as Navigation).navigateToVacancy(it)
         }, {
             //vm.addFavorite(it, isFullOpen)
         }),

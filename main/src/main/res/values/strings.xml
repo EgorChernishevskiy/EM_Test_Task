@@ -7,4 +7,6 @@
     <string name="tv_vacancies_filter_label">По соответствию</string>
     <string name="tv_for_you_label">Вакансии для вас</string>
     <string name="button_more_label">Еще</string>
+    <string name="binding_people_look">Сейчас просматривает %1$s</string>
+    <string name="binding_more">Еще %1$s</string>
 </resources>

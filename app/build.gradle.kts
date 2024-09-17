@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":main"))
     implementation(project(":auth"))
     implementation(project(":core"))
+    implementation(project(":vacancyDetails"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

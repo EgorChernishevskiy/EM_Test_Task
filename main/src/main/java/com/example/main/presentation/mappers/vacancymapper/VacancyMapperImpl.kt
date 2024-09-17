@@ -1,10 +1,10 @@
 package com.example.main.presentation.mappers.vacancymapper
 
-import com.example.main.domain.models.Vacancy
-import com.example.main.presentation.models.AddressUI
-import com.example.main.presentation.models.ExperienceUI
-import com.example.main.presentation.models.SalaryUI
-import com.example.main.presentation.models.VacancyUI
+import com.example.core.domain.models.Vacancy
+import com.example.core.presentation.models.AddressUI
+import com.example.core.presentation.models.ExperienceUI
+import com.example.core.presentation.models.SalaryUI
+import com.example.core.presentation.models.VacancyUI
 
 class VacancyMapperImpl : VacancyMapper {
     override fun map(domainModel: Vacancy): VacancyUI {

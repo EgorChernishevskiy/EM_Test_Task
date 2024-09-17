@@ -7,9 +7,9 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.example.core.presentation.adapters.IAdapterDelegate
 import com.example.main.databinding.ItemButtonBigBinding
 import com.example.main.presentation.models.VacanciesAmountUI
-import com.example.main.presentation.models.VacancyUI
-
-private const val LOOKING_NOW = "Сейчас просматривает"
+import com.example.core.presentation.models.VacancyUI
+import com.example.core.presentation.utils.getCorrectPeopleForm
+import com.example.main.R
 
 fun vacancyAdapterDelegate(
     onClick: (VacancyUI) -> Unit,
@@ -25,12 +25,8 @@ fun vacancyAdapterDelegate(
         bind {
             binding.textLookingNow.isVisible = item.lookingNumber > 0
             val people: String =
-                context.resources.getQuantityString(
-                    com.example.core.R.plurals.plurals_vacancies,
-                    item.lookingNumber,
-                    item.lookingNumber
-                )
-            binding.textLookingNow.text = "$LOOKING_NOW $people"
+                getCorrectPeopleForm(item.lookingNumber)
+            binding.textLookingNow.text = context.getString(R.string.binding_people_look, people)
 
             binding.imgFavourite.setImageDrawable(
                 if (item.isFavorite) AppCompatResources.getDrawable(
@@ -52,8 +48,6 @@ fun vacancyAdapterDelegate(
         }
     }
 
-private const val MORE = "Еще"
-
 fun buttonAdapterDelegate(
     onClick: () -> Unit
 ) =
@@ -71,6 +65,6 @@ fun buttonAdapterDelegate(
                     item.count,
                     item.count
                 )
-            binding.buttonMore.text = "$MORE $text"
+            binding.buttonMore.text = context.getString(R.string.binding_more, text)
         }
     }

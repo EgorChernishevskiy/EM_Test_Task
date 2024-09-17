@@ -2,9 +2,9 @@
 <resources>
     <plurals name="plurals_vacancies">
         <item quantity="one">%1$d человек</item>
-        <item quantity="two">%1$d человека</item>
         <item quantity="few">%1$d человека</item>
-        <item quantity="other">%1$d человек</item>
+        <item quantity="many">%1$d человек</item>
+        <item quantity="other">%1$d человека</item>
     </plurals>
 
     <plurals name="plurals_vacancies_full">

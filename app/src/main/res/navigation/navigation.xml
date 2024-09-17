@@ -11,9 +11,9 @@
         android:label="SearchFragment"
         tools:layout="@layout/fragment_main">
 
-<!--        <action-->
-<!--            android:id="@+id/to_workFragment"-->
-<!--            app:destination="@id/workFragment" />-->
+        <action
+            android:id="@+id/to_vacancyFragment"
+            app:destination="@id/vacancyFragment" />
     </fragment>
 
 <!--    <fragment-->
@@ -40,10 +40,10 @@
 <!--        android:label="ProfileFragment"-->
 <!--        tools:layout="@layout/fragment_profile" />-->
 
-<!--    <fragment-->
-<!--        android:id="@+id/workFragment"-->
-<!--        android:name="com.example.search.work.WorkFragment"-->
-<!--        android:label="WorkFragment"-->
-<!--        tools:layout="@layout/fragment_work" />-->
+    <fragment
+        android:id="@+id/vacancyFragment"
+        android:name="com.example.vacancydetails.presentation.fragments.VacancyDetailsFragment"
+        android:label="WorkFragment"
+        tools:layout="@layout/fragment_vacancy_details" />
 
 </navigation>

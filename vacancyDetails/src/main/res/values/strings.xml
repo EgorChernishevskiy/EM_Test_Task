@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_vacancy_name_label">UI/UX Designer</string>
+    <string name="text_salary_label">Уровень дохода не указан</string>
+    <string name="text_exp_label">Требуемый опыт: от 1 года до 3 лет</string>
+    <string name="text_employment_label">Полная занятость, полный день</string>
+    <string name="text_people_response_label">147 человек уже\nоткликнулись</string>
+    <string name="text_people_look_label">2 человека\nсейчас смотрят</string>
+    <string name="tv_company_name_label">Мобирикс</string>
+    <string name="tv_adress_label">Минск, улица Бирюзова, 4/5</string>
+    <string name="tv_description_label"><![CDATA[MOBYRIX - динамично развивающаяся продуктовая IT-компания, специализирующаяся на разработке мобильных приложений для iOS и Android. Наша команда работает над собственными продуктами в разнообразных сферах: от утилит до развлечений и бизнес-приложений.\nМы ценим талант и стремление к инновациям и в данный момент в поиске талантливого UX/UI Designer, готового присоединиться к нашей команде и внести значимый вклад в развитие наших проектов.]]></string>
+    <string name="tv_tasks_label">Ваши задачи</string>
+    <string name="tv_tasks_content_label">-Проектировать пользовательский опыт, проводить UX исследования;\n-Разрабатывать адаптивный дизайн интерфейса для мобильных приложений;\n-Разрабатывать быстрые прототипы для тестирования идеи дизайна и их последующая; интеграция на основе обратной связи от команды и пользователей;\n-Взаимодействовать с командой разработчиков для обеспечения точной реализации ваших дизайнов;\n-Анализ пользовательского опыта и адаптация под тренды.</string>
+    <string name="tv_ask_label">Задайте вопрос работодателю</string>
+    <string name="tv_ask_description_label">Он получит его с откликом на вакансию</string>
+    <string name="btn_response_label">Откликнуться</string>
+    <string name="tv_question_label">Где распологается место работы?</string>
+    <string name="tv_cv_label">Резюме для отклика</string>
+    <string name="tv_vacancy_name_label">UI/UX дизайнер</string>
+    <string name="edit_placeholder">Ваше сопроводительное письмо</string>
+    <string name="tv_add_label">Добавить сопроводительное</string>
+    <string name="binding_exp">Требуемый опыт: %1$s</string>
+    <string name="binding_people_responded">%1$s уже откликнулось</string>
+    <string name="binding_people_looking">%1$s сейчас смотрят</string>
+    <string name="binding_address">%1$s, %2$s, %3$s</string>
+    <string name="binding_salary">%1$s %2$s</string>
+</resources>

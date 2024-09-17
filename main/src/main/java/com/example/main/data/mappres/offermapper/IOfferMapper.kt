@@ -1,8 +1,0 @@
-package com.example.main.data.mappres.offermapper
-
-import com.example.main.data.models.dto.OfferDTO
-import com.example.main.domain.models.Offer
-
-interface IOfferMapper {
-    fun mapOfferDTOToOffer(dto: OfferDTO): Offer
-}
