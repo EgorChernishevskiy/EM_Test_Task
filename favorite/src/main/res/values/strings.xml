@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_title_favorite_label">Избранное</string>
+    <string name="tv_vacancy_cont_label">1 вакансия</string>
+    <string name="looking_now">Сейчас просматривает %1$s</string>
+</resources>

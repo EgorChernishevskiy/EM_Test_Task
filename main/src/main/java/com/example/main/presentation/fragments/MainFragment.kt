@@ -51,7 +51,6 @@ class MainFragment : Fragment(com.example.main.R.layout.fragment_main) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        //viewModel.handleVacancies()
         viewModel.getVacanciesShort()
         viewModel.getOffers()
         observeVM()

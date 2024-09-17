@@ -1,6 +1,5 @@
 package com.example.em_test_task.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,12 +9,7 @@ import com.example.core.domain.usecases.InsertFavoriteUseCase
 import com.example.core.presentation.mappres.IFavoriteVacancyMapperUI
 import com.example.core.presentation.models.FavoriteVacancyUI
 import com.example.main.domain.usecases.GetVacanciesUseCase
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
@@ -45,6 +39,7 @@ class CommonViewModel(
                 .launchIn(viewModelScope)
         }
     }
+
     fun handleVacancies() {
         viewModelScope.launch {
             val domainVacancies = getVacanciesUseCase.execute()

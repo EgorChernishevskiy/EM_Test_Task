@@ -1,7 +1,5 @@
 package com.example.core.data.repositories
 
-
-import android.util.Log
 import com.example.core.data.database.dao.VacancyDao
 import com.example.core.data.database.entity.VacancyEntity
 import com.example.core.data.mappres.favoritevacancymapper.IFavoriteVacancyMapper
@@ -17,11 +15,8 @@ class CommonFavoriteRepositoryImpl(
 ) : ICommonFavoriteRepository {
     override suspend fun insertFavorite(id: String) {
         val isFavorite = dao.getFavouriteById(id) != null
-        Log.d("Add", "Click completed")
         dao.insertFavorite(VacancyEntity(id, !isFavorite))
-        Log.d("Add", "Click result${dao.getFavourites()}")
         delay(500)
-        Log.d("Add", "_____________")
     }
 
     override suspend fun getFavoritesFlow(): Flow<List<FavoriteVacancy>> {

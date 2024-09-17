@@ -1,10 +1,11 @@
 package com.example.main.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.domain.models.Vacancy
+import com.example.core.domain.usecases.GetFavoritesFlowUseCase
 import com.example.core.domain.usecases.InsertFavoriteUseCase
 import com.example.core.presentation.adapters.IAdapterDelegate
 import com.example.main.domain.usecases.GetOffersUseCase
@@ -13,6 +14,7 @@ import com.example.main.domain.usecases.GetVacanciesUseCase
 import com.example.main.presentation.mappers.offermapper.OfferMapper
 import com.example.main.presentation.mappers.vacanciesamountmapper.VacanciesAmountMapper
 import com.example.main.presentation.mappers.vacancymapper.VacancyMapper
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -22,7 +24,8 @@ class MainViewModel(
     private val offerMapper: OfferMapper,
     private val vacancyMapper: VacancyMapper,
     private val vacanciesAmountMapper: VacanciesAmountMapper,
-    private val insertFavoriteUseCase: InsertFavoriteUseCase
+    private val insertFavoriteUseCase: InsertFavoriteUseCase,
+    private val getFavoritesFlowUseCase: GetFavoritesFlowUseCase
 ) : ViewModel() {
 
     private val _vacancies = MutableLiveData<List<IAdapterDelegate>>()
@@ -37,7 +40,8 @@ class MainViewModel(
     fun getVacanciesShort() {
         viewModelScope.launch {
             val domainVacancies = getVacanciesUseCase.execute().take(3)
-            val vacancyUIList = domainVacancies.map { vacancy -> vacancyMapper.map(vacancy) }
+            val updatedVacancies = updateVacanciesWithFavorites(domainVacancies)
+            val vacancyUIList = updatedVacancies.map { vacancy -> vacancyMapper.map(vacancy) }
 
             val domainVacanciesAmount = getVacanciesCountUseCase.execute()
             val vacanciesAmountUI = vacanciesAmountMapper.map(domainVacanciesAmount)
@@ -50,7 +54,8 @@ class MainViewModel(
     fun getVacanciesFull() {
         viewModelScope.launch {
             val domainVacancies = getVacanciesUseCase.execute()
-            val vacancyUIList = domainVacancies.map { vacancy -> vacancyMapper.map(vacancy) }
+            val updatedVacancies = updateVacanciesWithFavorites(domainVacancies)
+            val vacancyUIList = updatedVacancies.map { vacancy -> vacancyMapper.map(vacancy) }
             _vacancies.postValue(vacancyUIList)
         }
     }
@@ -63,23 +68,26 @@ class MainViewModel(
         }
     }
 
-    fun addFavorite(id: String, isFull: Boolean) {
-        viewModelScope.launch {
-            insertFavoriteUseCase.execute(id)
-            Log.d("Add", "Click completed")
-            if (isFull) {
-                getVacanciesFull()
+    private suspend fun updateVacanciesWithFavorites(vacancies: List<Vacancy>): List<Vacancy> {
+        val favoritesFlow = getFavoritesFlowUseCase.execute()
+        val favoriteIds = favoritesFlow.first().map { it.id }.toSet()
+
+        return vacancies.map { vacancy ->
+            if (vacancy.id in favoriteIds) {
+                vacancy.copy(isFavorite = true)
             } else {
-                getVacanciesShort()
+                vacancy.copy(isFavorite = false)
             }
         }
     }
 
-    fun handleVacancies() {
+    fun addFavorite(id: String, isFull: Boolean) {
         viewModelScope.launch {
-            val domainVacancies = getVacanciesUseCase.execute()
-            domainVacancies.filter { it.isFavorite }.forEach { vacancy ->
-                insertFavoriteUseCase.execute(vacancy.id)
+            insertFavoriteUseCase.execute(id)
+            if (isFull) {
+                getVacanciesFull()
+            } else {
+                getVacanciesShort()
             }
         }
     }

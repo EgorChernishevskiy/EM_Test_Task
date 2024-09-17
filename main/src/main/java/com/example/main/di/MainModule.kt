@@ -43,6 +43,6 @@ val mainModule = module {
     factory { GetVacanciesUseCase(get()) }
     factory { GetVacanciesCountUseCase(get()) }
 
-    viewModel { MainViewModel(get(), get(), get(), get(), get(), get(), get()) }
+    viewModel { MainViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
 
 }
