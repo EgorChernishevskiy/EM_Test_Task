@@ -5,21 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.core.presentation.navigation.Navigation
+import com.example.core.presentation.utils.getVacancyWord
 import com.example.favorite.R
 import com.example.favorite.databinding.FragmentFavouriteBinding
+import com.example.favorite.presentation.adapters.vacancyAdapterDelegate
+import com.example.favorite.presentation.viewmodels.FavouriteViewModel
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import utlil.Navigation
 
 class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
 
     private var _binding: FragmentFavouriteBinding? = null
     private val binding get() = _binding!!
-    private val vm: FavouriteVM by viewModel()
+    private val vm: FavouriteViewModel by viewModel()
 
     private val favorites = ListDelegationAdapter(
         vacancyAdapterDelegate({
-            (requireActivity() as Navigation).navigateToWork(it)
+            (requireActivity() as Navigation).navigateToVacancy(it)
         }, {
             vm.addFavorite(it)
         })
@@ -41,10 +44,8 @@ class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
         vm.vacancies.observe(viewLifecycleOwner) {
             favorites.items = it
             favorites.notifyDataSetChanged()
-            val vacanciesText = requireContext().resources.getQuantityString(
-                com.example.base.R.plurals.plurals_vacancies_full, it.size, it.size
-            )
-            binding.textView.text = vacanciesText
+            val vacanciesText = "${it.size} ${getVacancyWord(it.size)}"
+            binding.textVacancyCount.text = vacanciesText
         }
     }
 

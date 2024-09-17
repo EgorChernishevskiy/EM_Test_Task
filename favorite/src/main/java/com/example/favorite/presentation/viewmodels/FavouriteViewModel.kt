@@ -7,15 +7,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.domain.models.Vacancy
 import com.example.core.domain.usecases.GetFavoritesFlowUseCase
+import com.example.core.domain.usecases.GetVacanciesUseCase
+import com.example.core.domain.usecases.InsertFavoriteUseCase
 import com.example.core.presentation.adapters.IAdapterDelegate
+import com.example.core.presentation.mappres.vacancymapper.VacancyMapper
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class FavouriteViewModel(
     private val getVacanciesUseCase: GetVacanciesUseCase,
-    private val getFavoritesFlowUseCase: GetFavoritesFlowUseCase
+    private val getFavoritesFlowUseCase: GetFavoritesFlowUseCase,
+    private val insertFavoriteUseCase: InsertFavoriteUseCase,
+    private val vacancyMapper: VacancyMapper
 
-) : ViewModel() {
+    ) : ViewModel() {
 
     private val _vacancies = MutableLiveData<List<IAdapterDelegate>>()
     val vacancies: LiveData<List<IAdapterDelegate>> = _vacancies
@@ -48,7 +53,7 @@ class FavouriteViewModel(
 
     fun addFavorite(id: String) {
         viewModelScope.launch {
-            repository.insertFavorite(id)
+            insertFavoriteUseCase.execute(id)
             getFavorites()
         }
     }

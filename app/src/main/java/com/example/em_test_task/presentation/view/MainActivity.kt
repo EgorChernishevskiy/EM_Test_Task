@@ -5,9 +5,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
-import androidx.fragment.app.commit
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.auth.presentation.fragments.EMAIL_KEY
 import com.example.auth.presentation.fragments.LoginFragment
 import com.example.auth.presentation.fragments.PinFragment
@@ -17,7 +18,6 @@ import com.example.core.presentation.navigation.Navigation
 import com.example.em_test_task.R
 import com.example.em_test_task.databinding.ActivityMainBinding
 import com.example.em_test_task.presentation.viewmodel.CommonViewModel
-import com.example.main.presentation.fragments.MainFragment
 import com.example.vacancydetails.presentation.fragments.VACANCY_KEY
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,45 +34,31 @@ class MainActivity : AppCompatActivity(), AuthNavigation, Navigation {
         vm.loadFavoriteVacancies()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //setContentView(R.layout.activity_main)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                //replace(R.id.fragmentContainer, LoginFragment())
-                replace(R.id.fragmentContainer, MainFragment())
-            }
-            //findViewById<BottomNavigationView>(R.id.nav_view).visibility = View.GONE
-        }
-
 
         supportFragmentManager.addOnBackStackChangedListener {
             toggleBottomNavigationVisibility()
         }
 
+        setupBottomNav()
         observeVM()
     }
 
     override fun navigateToPin(email: String) {
-        val pinFragment = PinFragment().apply {
-            arguments = Bundle().apply {
-                putString(EMAIL_KEY, email)
-            }
+        val bundle = Bundle().apply {
+            putString(EMAIL_KEY, email)
         }
-
-        supportFragmentManager.commit {
-            replace(R.id.fragmentContainer, pinFragment)
-            addToBackStack(null)
-        }
+        findNavController(R.id.fragmentContainer).navigate(R.id.pin, bundle)
     }
 
     override fun closeAuth() {
-        supportFragmentManager.popBackStack(
-            null,
-            androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
-        )
-        supportFragmentManager.commit {
-            replace(R.id.fragmentContainer, MainFragment())
-        }
+        val navController = findNavController(R.id.fragmentContainer)
+
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.auth, true)
+            .setPopUpTo(R.id.pin, true)
+            .build()
+
+        navController.navigate(R.id.navigation_main, null, navOptions)
     }
 
     private fun toggleBottomNavigationVisibility() {
@@ -109,6 +95,22 @@ class MainActivity : AppCompatActivity(), AuthNavigation, Navigation {
                 number = count
             }
         }
+    }
+
+    private fun setupBottomNav() {
+        val navController = findNavController(R.id.fragmentContainer)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.auth, R.id.pin -> {
+                    binding.navView.visibility = View.GONE
+                }
+
+                else -> {
+                    binding.navView.visibility = View.VISIBLE
+                }
+            }
+        }
+        binding.navView.setupWithNavController(navController)
     }
 
 }

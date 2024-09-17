@@ -2,14 +2,17 @@ package com.example.core.di
 
 import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.core.data.api.VacancyApiService
 import com.example.core.data.mappres.favoritevacancymapper.FavoriteVacancyMapperImpl
 import com.example.core.data.mappres.favoritevacancymapper.IFavoriteVacancyMapper
 import com.example.core.data.repositories.CommonFavoriteRepositoryImpl
+import com.example.core.data.repositories.CommonVacanciesRepositoryImpl
 import com.example.core.domain.repositories.ICommonFavoriteRepository
+import com.example.core.domain.repositories.ICommonVacanciesRepository
 import com.example.core.domain.usecases.GetFavoritesFlowUseCase
 import com.example.core.domain.usecases.InsertFavoriteUseCase
-import com.example.core.presentation.mappres.FavoriteVacancyMapperUIImpl
-import com.example.core.presentation.mappres.IFavoriteVacancyMapperUI
+import com.example.core.presentation.mappres.favoritevacancymapper.FavoriteVacancyMapperUIImpl
+import com.example.core.presentation.mappres.favoritevacancymapper.IFavoriteVacancyMapperUI
 import com.example.core.utils.ResourceProvider
 import data.local.VacancyDataBase
 import okhttp3.OkHttpClient
@@ -33,6 +36,9 @@ val coreModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+    single {
+        get<Retrofit>().create(VacancyApiService::class.java)
+    }
 
     single { ResourceProvider(get()) }
 
@@ -49,6 +55,11 @@ val coreModule = module {
 
     factory<ICommonFavoriteRepository> {
         CommonFavoriteRepositoryImpl(
+            get(), get()
+        )
+    }
+    factory<ICommonVacanciesRepository> {
+        CommonVacanciesRepositoryImpl(
             get(), get()
         )
     }

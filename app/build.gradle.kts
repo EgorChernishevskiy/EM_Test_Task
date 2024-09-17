@@ -44,6 +44,10 @@ dependencies {
     implementation(project(":auth"))
     implementation(project(":core"))
     implementation(project(":vacancyDetails"))
+    implementation(project(":favorite"))
+    implementation(project(":message"))
+    implementation(project(":response"))
+    implementation(project(":profile"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

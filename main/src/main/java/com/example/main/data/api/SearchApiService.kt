@@ -1,6 +1,6 @@
 package com.example.main.data.api
 
-import com.example.main.data.models.responses.SearchResponse
+import com.example.core.data.models.responses.SearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

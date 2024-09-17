@@ -54,4 +54,9 @@ dependencies {
     implementation ("io.insert-koin:koin-android:3.4.0")
     implementation ("io.insert-koin:koin-androidx-compose:3.4.0")
 
+    //Navigation
+    val nav_version = "2.8.0"
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
+
 }

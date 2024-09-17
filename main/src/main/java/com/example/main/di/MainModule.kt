@@ -9,13 +9,13 @@ import com.example.main.data.repositories.SearchRepositoryImpl
 import com.example.main.domain.repositories.ISearchRepository
 import com.example.main.domain.usecases.GetOffersUseCase
 import com.example.main.domain.usecases.GetVacanciesCountUseCase
-import com.example.main.domain.usecases.GetVacanciesUseCase
+import com.example.core.domain.usecases.GetVacanciesUseCase
 import com.example.main.presentation.mappers.offermapper.OfferMapper
 import com.example.main.presentation.mappers.offermapper.OfferMapperImpl
 import com.example.main.presentation.mappers.vacanciesamountmapper.VacanciesAmountMapper
 import com.example.main.presentation.mappers.vacanciesamountmapper.VacanciesAmountMapperImpl
-import com.example.main.presentation.mappers.vacancymapper.VacancyMapper
-import com.example.main.presentation.mappers.vacancymapper.VacancyMapperImpl
+import com.example.core.presentation.mappres.vacancymapper.VacancyMapper
+import com.example.core.presentation.mappres.vacancymapper.VacancyMapperImpl
 import com.example.main.presentation.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -35,7 +35,7 @@ val mainModule = module {
 
     factory<ISearchRepository> {
         SearchRepositoryImpl(
-            get(), get(), get()
+            get(), get()
         )
     }
 

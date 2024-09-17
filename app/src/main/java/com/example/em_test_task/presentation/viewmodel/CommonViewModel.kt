@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.domain.usecases.GetFavoritesFlowUseCase
 import com.example.core.domain.usecases.InsertFavoriteUseCase
-import com.example.core.presentation.mappres.IFavoriteVacancyMapperUI
+import com.example.core.presentation.mappres.favoritevacancymapper.IFavoriteVacancyMapperUI
 import com.example.core.presentation.models.FavoriteVacancyUI
-import com.example.main.domain.usecases.GetVacanciesUseCase
+import com.example.core.domain.usecases.GetVacanciesUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch

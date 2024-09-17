@@ -10,23 +10,13 @@ import com.example.main.domain.repositories.ISearchRepository
 
 class SearchRepositoryImpl(
     private val searchApiService: SearchApiService,
-    private val offerMapper: IOfferMapper,
-    private val vacancyMapper: IVacancyMapper
+    private val offerMapper: IOfferMapper
 ) : ISearchRepository {
 
     override suspend fun getOffers(): List<Offer> {
         return try {
             val response = searchApiService.getOffers()
             response.body()?.offers?.map { offerMapper.mapOfferDTOToOffer(it) } ?: emptyList()
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
-
-    override suspend fun getVacancies(): List<Vacancy> {
-        return try {
-            val response = searchApiService.getVacancies()
-            response.body()?.vacancies?.map { vacancyMapper.mapVacancyDTOToVacancy(it) } ?: emptyList()
         } catch (e: Exception) {
             emptyList()
         }

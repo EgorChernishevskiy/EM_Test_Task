@@ -1,6 +1,6 @@
 package com.example.core.data.mappres.vacancymapper
 
-import com.example.core.data.models.VacancyDTO
+import com.example.core.data.models.dto.VacancyDTO
 import com.example.core.domain.models.Address
 import com.example.core.domain.models.Experience
 import com.example.core.domain.models.Salary

@@ -2,6 +2,7 @@ package com.example.em_test_task.di
 
 import com.example.auth.di.authModule
 import com.example.core.di.coreModule
+import com.example.favorite.di.favoriteModule
 import com.example.main.di.mainModule
 import com.example.vacancydetails.di.vacancyDetailsModule
 
@@ -10,5 +11,6 @@ val appModules = listOf(
     coreModule,
     mainModule,
     vacancyDetailsModule,
-    commonViewModel
+    commonViewModel,
+    favoriteModule
 )

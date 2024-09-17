@@ -6,6 +6,5 @@ import com.example.core.domain.models.Vacancy
 
 interface ISearchRepository {
     suspend fun getOffers(): List<Offer>
-    suspend fun getVacancies(): List<Vacancy>
     suspend fun getVacanciesAmount(): VacanciesAmount
 }
