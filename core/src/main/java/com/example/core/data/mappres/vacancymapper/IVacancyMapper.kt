@@ -1,4 +1,4 @@
-package com.example.core.data.mappres
+package com.example.core.data.mappres.vacancymapper
 
 import com.example.core.data.models.VacancyDTO
 import com.example.core.domain.models.Vacancy

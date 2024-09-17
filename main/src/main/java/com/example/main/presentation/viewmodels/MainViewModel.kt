@@ -1,9 +1,11 @@
 package com.example.main.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.domain.usecases.InsertFavoriteUseCase
 import com.example.core.presentation.adapters.IAdapterDelegate
 import com.example.main.domain.usecases.GetOffersUseCase
 import com.example.main.domain.usecases.GetVacanciesCountUseCase
@@ -19,7 +21,8 @@ class MainViewModel(
     private val getVacanciesCountUseCase: GetVacanciesCountUseCase,
     private val offerMapper: OfferMapper,
     private val vacancyMapper: VacancyMapper,
-    private val vacanciesAmountMapper: VacanciesAmountMapper
+    private val vacanciesAmountMapper: VacanciesAmountMapper,
+    private val insertFavoriteUseCase: InsertFavoriteUseCase
 ) : ViewModel() {
 
     private val _vacancies = MutableLiveData<List<IAdapterDelegate>>()
@@ -60,10 +63,25 @@ class MainViewModel(
         }
     }
 
-//    fun addFavorite(id: String, isFull: Boolean) {
-//        viewModelScope.launch {
-//            repository.insertFavorite(id)
-//            if (isFull) getVacanciesFull() else getVacanciesShort()
-//        }
-//    }
+    fun addFavorite(id: String, isFull: Boolean) {
+        viewModelScope.launch {
+            insertFavoriteUseCase.execute(id)
+            Log.d("Add", "Click completed")
+            if (isFull) {
+                getVacanciesFull()
+            } else {
+                getVacanciesShort()
+            }
+        }
+    }
+
+    fun handleVacancies() {
+        viewModelScope.launch {
+            val domainVacancies = getVacanciesUseCase.execute()
+            domainVacancies.filter { it.isFavorite }.forEach { vacancy ->
+                insertFavoriteUseCase.execute(vacancy.id)
+            }
+        }
+    }
+
 }

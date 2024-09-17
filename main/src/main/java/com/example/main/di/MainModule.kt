@@ -3,8 +3,8 @@ package com.example.main.di
 import com.example.main.data.api.SearchApiService
 import com.example.main.data.mappres.DataOfferMapperImpl
 import com.example.main.data.mappres.IOfferMapper
-import com.example.core.data.mappres.DataVacancyMapperImpl
-import com.example.core.data.mappres.IVacancyMapper
+import com.example.core.data.mappres.vacancymapper.DataVacancyMapperImpl
+import com.example.core.data.mappres.vacancymapper.IVacancyMapper
 import com.example.main.data.repositories.SearchRepositoryImpl
 import com.example.main.domain.repositories.ISearchRepository
 import com.example.main.domain.usecases.GetOffersUseCase
@@ -43,6 +43,6 @@ val mainModule = module {
     factory { GetVacanciesUseCase(get()) }
     factory { GetVacanciesCountUseCase(get()) }
 
-    viewModel { MainViewModel(get(), get(), get(), get(), get(), get()) }
+    viewModel { MainViewModel(get(), get(), get(), get(), get(), get(), get()) }
 
 }

@@ -3,7 +3,6 @@ package com.example.main.presentation.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,8 @@ import com.example.core.presentation.navigation.Navigation
 import com.example.main.databinding.FragmentMainBinding
 import com.example.main.presentation.adapters.offerAdapterDelegate
 import com.example.main.presentation.viewmodels.MainViewModel
-import com.example.search.search.adapter.buttonAdapterDelegate
-import com.example.search.search.adapter.vacancyAdapterDelegate
+import com.example.main.presentation.adapters.buttonAdapterDelegate
+import com.example.main.presentation.adapters.vacancyAdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,7 +29,7 @@ class MainFragment : Fragment(com.example.main.R.layout.fragment_main) {
         vacancyAdapterDelegate({
             (requireActivity() as Navigation).navigateToVacancy(it)
         }, {
-            //vm.addFavorite(it, isFullOpen)
+            viewModel.addFavorite(it, isFullOpen)
         }),
         buttonAdapterDelegate {
             showFullVacancies()
@@ -52,6 +51,7 @@ class MainFragment : Fragment(com.example.main.R.layout.fragment_main) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        //viewModel.handleVacancies()
         viewModel.getVacanciesShort()
         viewModel.getOffers()
         observeVM()

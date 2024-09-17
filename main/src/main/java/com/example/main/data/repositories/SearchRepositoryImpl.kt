@@ -2,7 +2,7 @@ package com.example.main.data.repositories
 
 import com.example.main.data.api.SearchApiService
 import com.example.main.data.mappres.IOfferMapper
-import com.example.core.data.mappres.IVacancyMapper
+import com.example.core.data.mappres.vacancymapper.IVacancyMapper
 import com.example.main.domain.models.Offer
 import com.example.main.domain.models.VacanciesAmount
 import com.example.core.domain.models.Vacancy

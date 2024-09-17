@@ -9,5 +9,6 @@ val appModules = listOf(
     authModule,
     coreModule,
     mainModule,
-    vacancyDetailsModule
+    vacancyDetailsModule,
+    commonViewModel
 )

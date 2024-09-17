@@ -1,5 +1,6 @@
-package com.example.search.search.adapter
+package com.example.main.presentation.adapters
 
+import android.util.Log
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import com.example.core.databinding.ItemVacancyBinding
@@ -40,6 +41,7 @@ fun vacancyAdapterDelegate(
             )
             binding.imgFavourite.setOnClickListener {
                 onFavoriteClick.invoke(item.id)
+                Log.d("Add", "Delegat clicked")
             }
             binding.textVacancy.text = item.title
             binding.textCity.text = item.address.town

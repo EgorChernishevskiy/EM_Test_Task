@@ -1,7 +1,17 @@
 package com.example.core.di
 
+import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.core.data.mappres.favoritevacancymapper.FavoriteVacancyMapperImpl
+import com.example.core.data.mappres.favoritevacancymapper.IFavoriteVacancyMapper
+import com.example.core.data.repositories.CommonFavoriteRepositoryImpl
+import com.example.core.domain.repositories.ICommonFavoriteRepository
+import com.example.core.domain.usecases.GetFavoritesFlowUseCase
+import com.example.core.domain.usecases.InsertFavoriteUseCase
+import com.example.core.presentation.mappres.FavoriteVacancyMapperUIImpl
+import com.example.core.presentation.mappres.IFavoriteVacancyMapperUI
 import com.example.core.utils.ResourceProvider
+import data.local.VacancyDataBase
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -25,4 +35,25 @@ val coreModule = module {
     }
 
     single { ResourceProvider(get()) }
+
+    single {
+        val db = Room.databaseBuilder(
+            get(),
+            VacancyDataBase::class.java, "database"
+        ).build()
+        db.getDao()
+    }
+
+    single<IFavoriteVacancyMapper> { FavoriteVacancyMapperImpl() }
+    single<IFavoriteVacancyMapperUI> { FavoriteVacancyMapperUIImpl() }
+
+    factory<ICommonFavoriteRepository> {
+        CommonFavoriteRepositoryImpl(
+            get(), get()
+        )
+    }
+
+    factory { GetFavoritesFlowUseCase(get()) }
+    factory { InsertFavoriteUseCase(get()) }
+
 }

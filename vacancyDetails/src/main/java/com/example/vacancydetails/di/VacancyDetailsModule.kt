@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val vacancyDetailsModule = module {
 
-    viewModel { VacancyDetailsViewModel() }
+    viewModel { VacancyDetailsViewModel(get()) }
 
 }

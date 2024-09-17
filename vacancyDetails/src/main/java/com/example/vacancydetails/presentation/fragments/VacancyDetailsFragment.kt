@@ -105,7 +105,7 @@ class VacancyDetailsFragment : Fragment(R.layout.fragment_vacancy_details) {
                     com.example.core.R.drawable.ic_favourite
                 )
             )
-            //vm.addFavorite(args.id)
+            viewModel.addFavorite(args.id)
         }
     }
 
